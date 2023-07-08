@@ -1,16 +1,15 @@
 using UnityEngine;
+using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
-
     private Rigidbody2D rb;
     private SpriteRenderer sr;
     private Animator animator;
     private bool canJump = true;
-    public float maxSpeed = 50.0f;
-    public float moveSpeed = 5.0f;
+    public float maxSpeed = 10.0f;
+    public float moveSpeed = 1.0f;
     public float jumpForce = 100.0f;
-
 
     // Start is called before the first frame update
     void Start()
@@ -41,16 +40,15 @@ public class PlayerController : MonoBehaviour
 
         rb.AddForce(Input.GetAxisRaw("Horizontal") * Vector2.right * moveSpeed);
 
-
         if (Mathf.Abs(rb.velocity.x) >= maxSpeed)
         {
             rb.velocity = new Vector2(maxSpeed * Mathf.Sign(rb.velocity.x), rb.velocity.y);
         }
 
-
         bool checkGround = CheckGround();
-        if(checkGround)
+        if (checkGround && canJump)
         {
+            Debug.Log("Ground");
             animator.SetBool("isJumping", false);
         }
 
@@ -66,13 +64,18 @@ public class PlayerController : MonoBehaviour
     public bool CheckGround()
     {
         float distanceToTheGround = GetComponent<Collider2D>().bounds.extents.y;
-        return Physics2D.Raycast(transform.position, Vector2.down, distanceToTheGround + 0.05f, LayerMask.GetMask("Floor"));
+        return Physics2D.Raycast(
+            transform.position,
+            Vector2.down,
+            distanceToTheGround + 0.05f,
+            LayerMask.GetMask("Floor")
+        );
     }
 
     IEnumerator JumpDelay()
     {
         canJump = false;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.7f);
         canJump = true;
     }
 }
