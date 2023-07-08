@@ -48,7 +48,6 @@ public class PlayerController : MonoBehaviour
         bool checkGround = CheckGround();
         if (checkGround && canJump)
         {
-            Debug.Log("Ground");
             animator.SetBool("isJumping", false);
         }
 
