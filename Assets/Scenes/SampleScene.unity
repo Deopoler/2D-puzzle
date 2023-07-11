@@ -198,7 +198,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -4407183521093510572, guid: 872fe064a0cb00dbba68540ebef7b493, type: 3}
       propertyPath: signalNumber
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 718818504976555796, guid: 872fe064a0cb00dbba68540ebef7b493, type: 3}
       propertyPath: m_Name
