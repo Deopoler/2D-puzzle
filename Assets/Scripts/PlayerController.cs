@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("isWalking", false);
         }
 
-        rb.AddForce(Input.GetAxisRaw("Horizontal") * Vector2.right * moveSpeed);
+        rb.AddForce(Input.GetAxisRaw("Horizontal") * Vector2.right * moveSpeed * Time.deltaTime);
 
         if (Mathf.Abs(rb.velocity.x) >= maxSpeed)
         {
