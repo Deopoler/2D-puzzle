@@ -48,7 +48,6 @@ public class PlayerController : MonoBehaviour
         bool checkGround = CheckGround();
         if (checkGround && canJump)
         {
-            Debug.Log("Ground");
             animator.SetBool("isJumping", false);
         }
 
@@ -64,13 +63,17 @@ public class PlayerController : MonoBehaviour
     public bool CheckGround()
     {
         float distanceToTheGround = GetComponent<Collider2D>().bounds.extents.y;
-        return Physics2D.Raycast(
-            transform.position,
+        return Physics2D.BoxCast(
+            new Vector2(transform.position.x, transform.position.y),
+            new Vector2(1f,0.1f),
+            0f,
             Vector2.down,
             distanceToTheGround + 0.05f,
             LayerMask.GetMask("Floor")
         );
     }
+
+    
 
     IEnumerator JumpDelay()
     {
@@ -78,4 +81,6 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(0.7f);
         canJump = true;
     }
+
+     
 }

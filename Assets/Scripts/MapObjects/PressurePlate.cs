@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class PressurePlate : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+   
+    public int signalNumber;
+
+    private void OnCollisionEnter2D(Collision2D other) 
+    {   
+        if(other.contacts[0].normal.y< 0f)
+        {
+            GameObject.FindObjectOfType<SignalManager>().SendSignal(signalNumber);
+            Destroy(GetComponent<Collider2D>());
+            GetComponentInChildren<Animator>().Play("Press");
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-}
+    
+
+ }
