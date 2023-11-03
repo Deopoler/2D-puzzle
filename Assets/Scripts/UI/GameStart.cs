@@ -9,9 +9,10 @@ public class GameStart : MonoBehaviour
     public Camera mainCamera;
     public void StartGame()
     {
-        canvas.gameObject.SetActive(false);
+        Debug.Log("Click");
         cinematicCamera.gameObject.SetActive(true);
         mainCamera.gameObject.SetActive(false);
+        canvas.gameObject.SetActive(false);
 
     }
 }
