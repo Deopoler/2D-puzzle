@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 1.0f;
     public float jumpForce = 100.0f;
     public int velocityYRaw = -1;
+    public Vector3 startPos;
 
     // Start is called before the first frame update
     void Start()
@@ -70,6 +71,11 @@ public class PlayerController : MonoBehaviour
         {
             StartCoroutine(JumpDelay());
             rb.AddForce(Vector2.up * jumpForce);
+        }
+
+        if (transform.position.y < -15f)
+        {
+            transform.position = startPos;
         }
 
         // Friction
