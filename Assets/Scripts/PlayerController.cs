@@ -73,12 +73,11 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(Vector2.up * jumpForce);
         }
 
-        if (transform.position.y < -15f)
+        //reset 
+        if (transform.position.y < -15f || Input.GetKey(KeyCode.R))
         {
             transform.position = startPos;
         }
-
-        // Friction
 
     }
 
