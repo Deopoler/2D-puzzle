@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D rb;
@@ -39,7 +40,6 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("isWalking", false);
         }
 
-
         rb.AddForce(Input.GetAxisRaw("Horizontal") * Vector2.right * moveSpeed * Time.deltaTime);
 
         if (Mathf.Abs(rb.velocity.x) >= maxSpeed)
@@ -70,15 +70,15 @@ public class PlayerController : MonoBehaviour
         if (Input.GetAxisRaw("Vertical") > 0 && checkGround && canJump)
         {
             StartCoroutine(JumpDelay());
+            rb.velocity = new Vector2(rb.velocity.x, 0f);
             rb.AddForce(Vector2.up * jumpForce);
         }
 
-        //reset 
+        //reset
         if (transform.position.y < -15f || Input.GetKey(KeyCode.R))
         {
             transform.position = startPos;
         }
-
     }
 
     public bool CheckGround()
@@ -91,13 +91,13 @@ public class PlayerController : MonoBehaviour
         //    Vector2.down,
         //    distanceToTheGround + 0.05f,
         //    LayerMask.GetMask("Floor")
-        //); 
+        //);
         return BoxCastDrawer.BoxCastAndDraw(
             new Vector2(transform.position.x, transform.position.y),
-            new Vector2(0.8f, 0.2f),
+            new Vector2(0.8f, 0.02f),
             0f,
             Vector2.down,
-            distanceToTheGround + 0.05f,
+            distanceToTheGround,
             LayerMask.GetMask("Floor")
         );
     }
