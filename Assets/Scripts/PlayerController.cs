@@ -94,7 +94,7 @@ public class PlayerController : MonoBehaviour
         //);
         return BoxCastDrawer.BoxCastAndDraw(
             new Vector2(transform.position.x, transform.position.y),
-            new Vector2(0.8f, 0.02f),
+            new Vector2(0.8f, 0.025f),
             0f,
             Vector2.down,
             distanceToTheGround,
